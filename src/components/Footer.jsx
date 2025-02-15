@@ -1,12 +1,12 @@
-import { Facebook, Youtube, Instagram, Twitter } from "lucide-react";
+import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-white font-plus-jakarta-sans text-[#000000]">
+    <footer className="bg-white font-plus-jakarta-sans text-[#000000] p-12">
       {/* Main Footer Content */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 md:px-16 text-center md:text-left">
         {/* Explore Section */}
-        <div className="mt-8">
+        <div>
           <h3 className="text-lg font-bold">Explore</h3>
           <ul className="text-sm mt-2 space-y-1">
             <li>
@@ -38,7 +38,7 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-3 py-2 bg-gray-100 outline-none"
+              className="flex-1 px-3 py-2 bg-gray-100 outline-none w-full"
             />
             <button className="bg-blue-600 text-white px-4 py-2 w-full sm:w-auto">
               Subscribe
@@ -73,7 +73,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-black"
           >
-            <Facebook size={24} />
+            <FaFacebookF size={20} />
           </a>
           <a
             href="https://youtube.com"
@@ -81,7 +81,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-black"
           >
-            <Youtube size={24} />
+            <FaYoutube size={20} />
           </a>
           <a
             href="https://instagram.com"
@@ -89,7 +89,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-black"
           >
-            <Instagram size={24} />
+            <FaInstagram size={20} />
           </a>
           <a
             href="https://twitter.com"
@@ -97,7 +97,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-black"
           >
-            <Twitter size={24} />
+            <FaTwitter size={20} />
           </a>
         </div>
       </div>

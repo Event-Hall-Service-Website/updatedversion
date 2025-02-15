@@ -56,11 +56,14 @@ const FAQAccordion = () => {
     AOS.init({ duration: 1000 });
   }, []);
   return (
-    <div className="bg-[#F8F8F8] lg:p-32" data-aos="fade-up">
-      <div className="max-w-7xl lg:max-w-4xl mx-auto py-12 px-6">
-        <h2 className="text-center text-[#B38B37] uppercase font-bold mb-3 font-OpenSans">
+    <div
+      className="bg-[#F8F8F8] lg:p-32 font-plus-jakarta-sans"
+      data-aos="fade-up"
+    >
+      <div className="max-w-7xl lg:max-w-4xl mx-auto py-12 px-6 lg:py-0 lg:px-0">
+        {/* <h2 className="text-center text-[#B38B37] uppercase font-bold mb-3 font-OpenSans">
           FAQs
-        </h2>
+        </h2> */}
         <h3 className="text-center text-4xl lg:text-4xl font-extrabold mb-8 font-serif lg:mb-9">
           Frequently Asked Questions
         </h3>
@@ -76,8 +79,8 @@ const FAQAccordion = () => {
                 <h4
                   className={`text-lg font-semibold ${
                     activeIndices.includes(index)
-                      ? "text-[#B38B37]"
-                      : "text-black font-serif"
+                      ? "text-[#000000]"
+                      : "text-black font-plus-jakarta-sans"
                   }`}
                 >
                   {item.question}
@@ -91,7 +94,7 @@ const FAQAccordion = () => {
                 </span>
               </div>
               {activeIndices.includes(index) && (
-                <p className="mt-4 text-gray-600 lg:text-left font-PlusJakartaSans">
+                <p className="mt-4 text-gray-600 lg:text-left font-PlusJakartaSans text-[15px]">
                   {item.answer}
                 </p>
               )}

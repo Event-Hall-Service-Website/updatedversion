@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 import heroimage1 from "../assets/img/heroimage1.png";
 import heroimage2 from "../assets/img/heroimage2.png";
 import heroimage3 from "../assets/img/heroimage3.avif";
@@ -18,12 +21,18 @@ const Herosection = () => {
 
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   return (
     <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden">
       {/* Static Text Overlay */}
       <div className="absolute inset-0 flex items-center justify-center text-white bg-black opacity-70 text-lg font-bold z-10 px-4">
-        <div className="w-4/5 lg:w-[800px] text-center mt-8">
+        <div
+          className="w-4/5 lg:w-[800px] text-center mt-8"
+          data-aos="fade-right"
+        >
           <h1 className="text-xl sm:text-2xl lg:text-5xl font-bold leading-tight font-poppins">
             Welcome to Eventure Hall
           </h1>

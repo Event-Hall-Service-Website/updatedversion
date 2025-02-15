@@ -6,6 +6,7 @@ import EventServices from "../components/EventServices";
 import Clientfeedback from "../components/Clientfeedback";
 import FAQAccordion from "../components/FAQAccordion";
 import ContactSection from "../components/ContactSection";
+import EventGallery from "../components/EventGallery";
 
 const Homepage = () => {
   return (
@@ -17,6 +18,7 @@ const Homepage = () => {
       <EventServices />
       <FAQAccordion />
       <Clientfeedback />
+      <EventGallery />
       <ContactSection />
     </main>
   );
