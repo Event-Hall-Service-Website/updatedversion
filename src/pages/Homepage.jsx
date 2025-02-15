@@ -6,7 +6,7 @@ import EventServices from "../components/EventServices";
 import Clientfeedback from "../components/Clientfeedback";
 import FAQAccordion from "../components/FAQAccordion";
 import ContactSection from "../components/ContactSection";
-import Footer from "../components/Footer";
+
 const Homepage = () => {
   return (
     <main>
@@ -18,7 +18,6 @@ const Homepage = () => {
       <FAQAccordion />
       <Clientfeedback />
       <ContactSection />
-      <Footer />
     </main>
   );
 };
