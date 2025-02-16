@@ -11,6 +11,7 @@ import PagenotFound from "./pages/PagenotFound";
 import "./App.css";
 
 import ContactForm from "./pages/ContactForm ";
+import BookingPage from "./pages/BookingPage";
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -21,6 +22,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route index path="/contact" element={<ContactForm />} />
+        <Route index path="/book" element={<BookingPage />} />
         <Route path="*" element={<PagenotFound />} /> {/* Catch-all route */}
       </Route>
     </Routes>

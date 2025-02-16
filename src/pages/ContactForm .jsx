@@ -25,8 +25,11 @@ const ContactForm = () => {
 
           <form>
             <div className="mb-4">
-              <label className="block text-sm font-semibold">Name</label>
+              <label className="block text-sm font-semibold" htmlFor="name">
+                Name
+              </label>
               <input
+                id="name"
                 type="text"
                 placeholder="Enter your Name"
                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
@@ -34,8 +37,11 @@ const ContactForm = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-semibold">Email</label>
+              <label className="block text-sm font-semibold" htmlFor="email">
+                Email
+              </label>
               <input
+                id="email"
                 type="email"
                 placeholder="Enter your Email"
                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
@@ -43,8 +49,11 @@ const ContactForm = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-semibold">Message</label>
+              <label className="block text-sm font-semibold" htmlFor="message">
+                Message
+              </label>
               <textarea
+                id="message"
                 placeholder="Type your Message"
                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none h-24 resize-none"
               ></textarea>

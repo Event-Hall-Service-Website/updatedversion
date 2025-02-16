@@ -50,9 +50,11 @@ const Navbar = () => {
         </ul>
 
         {/* Button - Desktop */}
-        <Button className="hidden lg:block bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans">
-          Book Now
-        </Button>
+        <Link to={"/book"} className="hidden lg:flex">
+          <Button className="hidden lg:block bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans">
+            Book Now
+          </Button>
+        </Link>
       </div>
 
       {/* Mobile Menu */}
@@ -89,9 +91,11 @@ const Navbar = () => {
             ))}
 
             {/* Mobile Button */}
-            <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans">
-              Book Now
-            </Button>
+            <Link to="/book" onClick={() => setIsOpen(false)}>
+              <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans">
+                Book Now
+              </Button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
