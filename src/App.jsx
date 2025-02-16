@@ -6,8 +6,11 @@ import { Router, Routes, Route } from "react-router";
 
 import Layout from "./layout/Layout";
 import Home from "./pages/Homepage";
+
 import PagenotFound from "./pages/PagenotFound";
 import "./App.css";
+
+import ContactForm from "./pages/ContactForm ";
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -17,6 +20,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route index path="/contact" element={<ContactForm />} />
         <Route path="*" element={<PagenotFound />} /> {/* Catch-all route */}
       </Route>
     </Routes>
