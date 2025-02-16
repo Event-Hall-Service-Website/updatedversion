@@ -62,7 +62,7 @@ const EventServices = () => {
               <p className="text-gray-600 mt-2 text-[15px]">
                 {service.description}
               </p>
-              <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans mt-4">
+              <Button className="border border-[#5833F1] hover:bg-sky-700 hover:text-white w-[150px] h-[50px] text-[#5833F1] px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans mt-4">
                 Learn more
               </Button>
             </div>
