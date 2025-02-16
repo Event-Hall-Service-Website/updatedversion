@@ -10,32 +10,29 @@ const ContactSection = () => {
     AOS.init({ duration: 1000 });
   }, []);
   return (
-    <section
-      className="bg-black text-white font-plus-jakarta-sans"
-      data-aos="fade-up"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10 md:px-16  border-b border-gray-700">
+    <section className=" text-black font-plus-jakarta-sans" data-aos="fade-up">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10 md:px-16   bg-[#F3F4F6]">
         <div className="flex flex-col ">
-          <Phone className="text-white text-4xl" />
+          <Phone className=" text-4xl" />
           <h3 className="text-lg font-bold mt-4">Call Us</h3>
-          <p className="text-white text-sm font-extralight">
+          <p className=" text-sm font-extralight leading-8">
             For inquiries or to book your next event, please reach out to us
             at info@eventure.com. We look forward to helping you create
             unforgettable experiences!
           </p>
         </div>
         <div className="flex flex-col ">
-          <Mail className="text-white text-4xl" />
+          <Mail className="text-black text-4xl" />
           <h3 className="text-lg font-bold mt-4">Email Us</h3>
-          <p className="text-white text-sm font-extralight">
+          <p className="text-black text-sm font-extralight leading-8">
             Our team is ready to assist you! Call us at +1 123-4567 for
             immediate assistance or to discuss your event needs.
           </p>
         </div>
         <div className="flex flex-col ">
-          <MapPin className="text-white text-4xl" />
+          <MapPin className="text-black text-4xl" />
           <h3 className="text-lg font-bold mt-4">Visit Us</h3>
-          <p className="text-white text-sm font-extralight ">
+          <p className="text-black text-sm font-extralight leading-8">
             We welcome you to visit our event center! Our address is 123 Event
             Lane, Yaba, CA 90001. Stop by to see our beautiful venues and
             discuss your event plans in person.

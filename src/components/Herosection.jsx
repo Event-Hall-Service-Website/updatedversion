@@ -26,7 +26,7 @@ const Herosection = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden">
+    <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden lg:h-[650px]">
       {/* Static Text Overlay */}
       <div className="absolute inset-0 flex items-center justify-center text-white bg-black opacity-70 text-lg font-bold z-10 px-4">
         <div
