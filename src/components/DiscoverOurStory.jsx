@@ -26,8 +26,8 @@ const DiscoverOurStory = () => {
         <div className="flex flex-col items-center" data-aos="fade-up">
           <History className="w-10 h-10 text-gray-700" />
           <h3 className="text-xl font-bold mt-4">History</h3>
-          <p className="text-gray-600 mt-2">
-            Established in 2010, our event center has been dedicated to
+          <p className="text-gray-600 mt-2 font-light">
+            Established in 2024, our event center has been dedicated to
             providing exceptional spaces for all types of gatherings. We have
             hosted numerous weddings and corporate events, building a reputation
             for excellence..
@@ -37,7 +37,7 @@ const DiscoverOurStory = () => {
         <div className="flex flex-col items-center" data-aos="fade-up">
           <Target className="w-10 h-10 text-gray-700" />
           <h3 className="text-xl font-bold mt-4">Mission</h3>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 font-light">
             We aim to create unforgettable experiences by offering beautiful
             venues and comprehensive event planning services tailored to our
             clients' needs. Your satisfaction is our priority.
@@ -47,7 +47,7 @@ const DiscoverOurStory = () => {
         <div className="flex flex-col items-center" data-aos="fade-up">
           <ThumbsUp className="w-10 h-10 text-gray-700" />
           <h3 className="text-xl font-bold mt-4">Vision</h3>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 font-light">
             We believe in customer satisfaction, quality, integrity, and
             creativity. These values guide us in every event we host, ensuring a
             unique and memorable experience for our clients.

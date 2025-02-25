@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import image1 from "../assets/img/banquet-table-with-snacks.png";
-import image3 from "../assets/img/dj-playing-music-mixer.png";
 import Button from "../components/Button";
+
+// Import Low-Quality Placeholder Image (Optional)
+import placeholder from "../assets/img/heroimage6.avif";
+import image1 from "../assets/img/banquet-table-with-snacks.png";
 import image2 from "../assets/img/restaurant-hall-with-small-stage-monitor-red-curtains-brick-walls-white-napoleon-chairs.png";
+import image3 from "../assets/img/dj-playing-music-mixer.png";
 
 const services = [
   {
@@ -28,15 +31,27 @@ const services = [
 ];
 
 const EventServices = () => {
+  const [loadedImages, setLoadedImages] = useState(
+    Array(services.length).fill(false) // Track loaded state for each image
+  );
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  const handleImageLoad = (index) => {
+    setLoadedImages((prev) => {
+      const updated = [...prev];
+      updated[index] = true;
+      return updated;
+    });
+  };
 
   return (
     <section className="py-12 px-6 text-center font-plus-jakarta-sans">
       <div className="max-w-5xl mx-auto">
         <h2
-          className="text-3xl font-bold mb-4 font-plus-jakarta-sans "
+          className="text-3xl font-bold mb-4 font-plus-jakarta-sans"
           data-aos="fade-down"
         >
           Explore Our Comprehensive Event Services
@@ -54,9 +69,13 @@ const EventServices = () => {
               data-aos="fade-up"
             >
               <img
-                src={service.img}
+                src={loadedImages[index] ? service.img : placeholder}
                 alt={service.title}
-                className="rounded-lg w-full h-40 object-cover mb-4"
+                className={`rounded-lg w-full h-40 object-cover mb-4 transition-opacity duration-700 ${
+                  loadedImages[index] ? "opacity-100" : "opacity-0"
+                }`}
+                loading="lazy"
+                onLoad={() => handleImageLoad(index)}
               />
               <h3 className="text-xl font-semibold">{service.title}</h3>
               <p className="text-gray-600 mt-2 text-[15px]">

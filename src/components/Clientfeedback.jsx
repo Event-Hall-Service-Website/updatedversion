@@ -22,13 +22,13 @@ const feedbacks = [
   {
     name: "Grace White",
     review:
-      "We had our annual meeting here, and it was a great success. The facilities were top-notch and the catering was excellent.",
+      "We had our annual meeting here, and it was a great success. The facilities were top-notchss and great",
     img: person2,
   },
   {
     name: "Oladipo Femi",
     review:
-      "I rented a hall for my daughter's birthday party. The decorations were stunning, and the kids had a blast!",
+      "I rented the hall for my daughter's birthday party. The decorations were stunning, and the kids had a blast!",
     img: person3,
   },
   {

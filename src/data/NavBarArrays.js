@@ -5,12 +5,12 @@ export const NavRoutes = [
   },
   {
     label: "About",
-    path: "/about",
+    path: "/aboutus",
   },
 
   {
     label: "Services",
-    path: "/services",
+    path: "/service",
   },
   {
     label: "Contact",

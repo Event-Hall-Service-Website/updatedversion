@@ -1,51 +1,57 @@
-import React from "react";
+import React, { useRef } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer"; // Import Intersection Observer
 import { Pagination, Autoplay } from "swiper/modules";
 import TeamSection from "../components/TeamSection";
 // import eventImage from "../assets/img/decorated-tables-wedding-restaurant.png"; // Update with your actual image path
 // import Button from "../components/Button";
 // import { Link } from "react-router";
-const links = [
-  { name: "Open roles", href: "#" },
-  { name: "Internship program", href: "#" },
-  { name: "Our values", href: "#" },
-  { name: "Meet our leadership", href: "#" },
-];
+const links = [{ name: "Meet the Team", href: "#" }];
+
 const stats = [
-  { name: "Offices worldwide", value: "12" },
-  { name: "Full-time colleagues", value: "300+" },
-  { name: "Hours per week", value: "40" },
-  { name: "Paid time off", value: "Unlimited" },
+  { name: "Countries represented", value: 20 },
+  { name: "Happy clients", value: 500 },
+  { name: "Years of experience", value: 15 },
+  { name: "Projects completed", value: 3334 },
 ];
 
 // Testimonial Data
 const testimonials = [
   {
     id: 1,
-    text: "“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae.”",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    name: "Judith Black",
-    title: "CEO of Workcation",
+    text: "“An outstanding team that delivers top-quality results. Highly recommend their services!”",
+    image: "https://randomuser.me/api/portraits/women/52.jpg",
+    name: "Sophia Lee",
+    title: "Creative Director",
   },
   {
     id: 2,
-    text: "“Numquam corrupti in laborum sed rerum et corporis. Expedita voluptas culpa sapiente alias molestiae.”",
-    image: "https://randomuser.me/api/portraits/women/50.jpg",
-    name: "Amanda Doe",
-    title: "Marketing Director",
+    text: "“Their dedication and professionalism are unmatched. A pleasure to work with.”",
+    image: "https://randomuser.me/api/portraits/men/48.jpg",
+    name: "David Johnson",
+    title: "Operations Manager",
   },
   {
     id: 3,
-    text: "“Excellent service! I highly recommend them for all event planning needs. The team was professional and efficient.”",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
-    name: "Michael Smith",
-    title: "Event Manager",
+    text: "“Exceptional service and innovative solutions. Our go-to team for every project.”",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Emily Carter",
+    title: "CEO, TechCorp",
   },
 ];
-const BookingPage = () => {
+const Aboutuspage = () => {
+  const { ref, inView } = useInView({ triggerOnce: true });
+  const clipboardSectionRef = useRef(null);
+
+  const handleScroll = () => {
+    if (clipboardSectionRef.current) {
+      clipboardSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <>
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
@@ -84,25 +90,31 @@ const BookingPage = () => {
               Work with us
             </h2>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat.
+              Empowering businesses with cutting-edge solutions and a passion
+              for excellence.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base/7 font-semibold text-white sm:grid-cols-2 md:flex lg:gap-x-10">
               {links.map((link) => (
-                <a key={link.name} href={link.href}>
+                <a key={link.name} href={link.href} onClick={handleScroll}>
                   {link.name} <span aria-hidden="true">&rarr;</span>
                 </a>
               ))}
             </div>
-            <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+            <dl
+              ref={ref}
+              className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
+            >
               {stats.map((stat) => (
                 <div key={stat.name} className="flex flex-col-reverse gap-1">
                   <dt className="text-base/7 text-gray-300">{stat.name}</dt>
                   <dd className="text-4xl font-semibold tracking-tight text-white">
-                    {stat.value}
+                    {inView ? (
+                      <CountUp end={stat.value} duration={2} suffix="+" />
+                    ) : (
+                      "0"
+                    )}
                   </dd>
                 </div>
               ))}
@@ -136,7 +148,10 @@ const BookingPage = () => {
             className="mt-10"
           >
             {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.id} className="mb-8">
+              <SwiperSlide
+                key={testimonial.id}
+                className="mb-8 font-plus-jakarta-sans"
+              >
                 <blockquote className="text-center text-xl font-semibold text-gray-900 sm:text-2xl">
                   <p>{testimonial.text}</p>
                 </blockquote>
@@ -158,9 +173,11 @@ const BookingPage = () => {
           </Swiper>
         </div>
       </section>
-      <TeamSection></TeamSection>
+      <div ref={clipboardSectionRef} id="clipboardSection">
+        <TeamSection />
+      </div>
     </>
   );
 };
 
-export default BookingPage;
+export default Aboutuspage;

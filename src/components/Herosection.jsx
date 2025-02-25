@@ -1,29 +1,46 @@
 import React, { useState, useEffect } from "react";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Button from "./Button";
+
+// Import Low-Quality Placeholder Images (Optional for better UX)
+import placeholder from "../assets/img/heroimage6.avif"; // A very small low-res image
 import heroimage1 from "../assets/img/heroimage1.png";
 import heroimage2 from "../assets/img/heroimage2.png";
 import heroimage3 from "../assets/img/heroimage3.avif";
 import heroimage4 from "../assets/img/heroimage4.avif";
 import heroimage7 from "../assets/img/heroimage7.png";
-import Button from "./Button";
 
 const images = [heroimage1, heroimage2, heroimage3, heroimage4, heroimage7];
 
 const Herosection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState(
+    Array(images.length).fill(false) // Track loaded state for each image
+  );
 
+  // Change images every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  // Initialize AOS animations
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  // Mark an image as loaded when it's fully downloaded
+  const handleImageLoad = (index) => {
+    setLoadedImages((prev) => {
+      const updated = [...prev];
+      updated[index] = true;
+      console.log(updated);
+      return updated;
+    });
+  };
 
   return (
     <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden lg:h-[650px]">
@@ -66,12 +83,16 @@ const Herosection = () => {
         </div>
       </div>
 
-      {/* Image Slider */}
+      {/* Image Slider with Lazy Loading & Placeholder */}
       <div className="absolute inset-0 w-full h-full transition-opacity duration-1000">
         <img
-          src={images[currentIndex]}
+          src={loadedImages[currentIndex] ? images[currentIndex] : placeholder}
           alt={`Slide ${currentIndex + 1}`}
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover transition-opacity duration-700 ${
+            loadedImages[currentIndex] ? "opacity-100" : "opacity-0"
+          }`}
+          loading="lazy"
+          onLoad={() => handleImageLoad(currentIndex)}
         />
       </div>
     </div>

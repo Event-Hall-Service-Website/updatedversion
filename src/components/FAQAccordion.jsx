@@ -26,7 +26,7 @@ const faqData = [
   {
     question: "How far in advance should I book my event?",
     answer:
-      "To ensure availability, we recommend booking at least 3 to 6 months in advance, especially for peak seasons. However, we do our best to accommodate last-minute requests whenever possible.",
+      "To ensure availability, we recommend booking at 4weeks months in advance, especially for peak seasons. However, we do our best to accommodate last-minute requests whenever possible.",
   },
   {
     question: "Do you provide on-site event coordination?",
@@ -34,9 +34,9 @@ const faqData = [
       "Yes, our professional event coordinators will be on-site to oversee every detail and ensure your event runs seamlessly. From setup to teardown, our team is dedicated to providing a stress-free experience for you and your guests.",
   },
   {
-    question: "What type of entertainment options do you offer?",
+    question: "Can I schedule a tour of the venue before booking?",
     answer:
-      "We offer a variety of entertainment options, including live bands, DJs, performers, and interactive experiences. Let us know your theme and preferences, and we'll recommend the best entertainment to elevate your event.",
+      "Of course! We encourage clients to schedule a tour of our venue to explore the space, discuss their event vision, and ask any questions. Contact us to set up an appointment at your convenience.",
   },
 ];
 
