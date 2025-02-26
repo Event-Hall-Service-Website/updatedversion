@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
-
+import React, { useRef, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,36 +14,37 @@ import TeamSection from "../components/TeamSection";
 const links = [{ name: "Meet the Team", href: "#" }];
 
 const stats = [
-  { name: "Countries represented", value: 20 },
-  { name: "Happy clients", value: 500 },
-  { name: "Years of experience", value: 15 },
-  { name: "Projects completed", value: 3334 },
+  { name: "Events Hosted", value: 1200 },
+  { name: "Happy Clients", value: 5000 },
+  { name: "Years in Service", value: 10 },
+  { name: "Venue Capacity", value: 500 },
 ];
 
-// Testimonial Data
+// Testimonial Data for H2All Event Hall
 const testimonials = [
   {
     id: 1,
-    text: "“An outstanding team that delivers top-quality results. Highly recommend their services!”",
+    text: "“H2All Event Hall made our wedding day absolutely magical! The ambiance, staff, and service were beyond our expectations.”",
     image: "https://randomuser.me/api/portraits/women/52.jpg",
     name: "Sophia Lee",
-    title: "Creative Director",
+    title: "Bride",
   },
   {
     id: 2,
-    text: "“Their dedication and professionalism are unmatched. A pleasure to work with.”",
+    text: "“We hosted our annual corporate gala here, and it was a phenomenal experience. Professional staff and a stunning venue!”",
     image: "https://randomuser.me/api/portraits/men/48.jpg",
     name: "David Johnson",
-    title: "Operations Manager",
+    title: "Corporate Event Planner",
   },
   {
     id: 3,
-    text: "“Exceptional service and innovative solutions. Our go-to team for every project.”",
+    text: "“From the decor to the catering, every detail was perfect. Our guests were truly impressed!”",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     name: "Emily Carter",
-    title: "CEO, TechCorp",
+    title: "Event Coordinator",
   },
 ];
+
 const Aboutuspage = () => {
   const { ref, inView } = useInView({ triggerOnce: true });
   const clipboardSectionRef = useRef(null);
@@ -52,6 +54,11 @@ const Aboutuspage = () => {
       clipboardSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
@@ -85,13 +92,15 @@ const Aboutuspage = () => {
           />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-              Work with us
+          <div className="mx-auto max-w-2xl lg:mx-0  py-6 ">
+            <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-7xl lg:text-4xl">
+              work with us
             </h2>
-            <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
-              Empowering businesses with cutting-edge solutions and a passion
-              for excellence.
+            <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8 font-plus-jakarta-sans lg:text-[15px]">
+              Welcome to EventureHall – the perfect venue for unforgettable
+              celebrations. Whether it's a wedding, corporate gathering, or a
+              special occasion, we provide a luxurious and elegant space
+              designed to make your event extraordinary.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
@@ -107,9 +116,15 @@ const Aboutuspage = () => {
               className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
             >
               {stats.map((stat) => (
-                <div key={stat.name} className="flex flex-col-reverse gap-1">
+                <div
+                  key={stat.name}
+                  className="flex flex-col-reverse gap-1 font-plus-jakarta-sans"
+                >
                   <dt className="text-base/7 text-gray-300">{stat.name}</dt>
-                  <dd className="text-4xl font-semibold tracking-tight text-white">
+                  <dd
+                    className="text-4xl font-semibold tracking-tight text-white"
+                    data-aos="fade-up"
+                  >
                     {inView ? (
                       <CountUp end={stat.value} duration={2} suffix="+" />
                     ) : (
@@ -122,7 +137,10 @@ const Aboutuspage = () => {
           </div>
         </div>
       </div>
-      <section className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <section
+        className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8 "
+        data-aos="fade-up"
+      >
         {/* Background Styling */}
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-100),white)] opacity-20" />
         <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white ring-1 shadow-xl shadow-indigo-600/10 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
@@ -173,6 +191,50 @@ const Aboutuspage = () => {
           </Swiper>
         </div>
       </section>
+      <div className="bg-white  sm:py-32 ">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8" data-aos="fade-up">
+          <h2 className="text-center text-lg/8 font-semibold text-gray-900 font-plus-jakarta-sans">
+            Trusted by Our Clients for Unforgettable Events at Eventure Hall
+          </h2>
+          <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+            <img
+              alt="Transistor"
+              src="https://tailwindui.com/plus-assets/img/logos/158x48/transistor-logo-gray-900.svg"
+              width={158}
+              height={48}
+              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+            />
+            <img
+              alt="Reform"
+              src="https://tailwindui.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg"
+              width={158}
+              height={48}
+              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+            />
+            <img
+              alt="Tuple"
+              src="https://tailwindui.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg"
+              width={158}
+              height={48}
+              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+            />
+            <img
+              alt="SavvyCal"
+              src="https://tailwindui.com/plus-assets/img/logos/158x48/savvycal-logo-gray-900.svg"
+              width={158}
+              height={48}
+              className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+            />
+            <img
+              alt="Statamic"
+              src="https://tailwindui.com/plus-assets/img/logos/158x48/statamic-logo-gray-900.svg"
+              width={158}
+              height={48}
+              className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+            />
+          </div>
+        </div>
+      </div>
       <div ref={clipboardSectionRef} id="clipboardSection">
         <TeamSection />
       </div>

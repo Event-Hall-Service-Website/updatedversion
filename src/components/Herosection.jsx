@@ -10,6 +10,7 @@ import heroimage2 from "../assets/img/heroimage2.png";
 import heroimage3 from "../assets/img/heroimage3.avif";
 import heroimage4 from "../assets/img/heroimage4.avif";
 import heroimage7 from "../assets/img/heroimage7.png";
+import { Link } from "react-router";
 
 const images = [heroimage1, heroimage2, heroimage3, heroimage4, heroimage7];
 
@@ -75,9 +76,11 @@ const Herosection = () => {
               <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
                 View Gallery
               </Button>
-              <Button className="border border-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
-                Contact Us
-              </Button>
+              <Link to={"/contact"}>
+                <Button className="border border-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

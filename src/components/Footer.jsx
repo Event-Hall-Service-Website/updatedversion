@@ -1,109 +1,96 @@
-import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router";
-
-const Footer = () => {
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaYoutube,
+  FaPhone,
+  FaEnvelope,
+  FaMapLocation,
+} from "react-icons/fa6";
+import logo from "../assets/img/logo.png";
+export default function Footer() {
   return (
-    <footer className="bg-white font-plus-jakarta-sans text-[#000000] p-12 mt-8">
-      {/* Main Footer Content */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 md:px-16 text-center md:text-left">
-        {/* Explore Section */}
-        <div>
-          <h3 className="text-lg font-bold">Explore</h3>
-          <ul className="text-sm mt-2 space-y-1">
-            <li>
-              <Link to="#">Venues</Link>
-            </li>
-            <li>
-              <Link to="#">Services</Link>
-            </li>
-          </ul>
-        </div>
+    <footer className="bg-gray-900 text-gray-400 py-10 font-plus-jakarta-sans">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* About the Venue */}
+          <div>
+            <div className="flex items-center space-x-2">
+              <span className="text-indigo-400 text-2xl font-bold">
+                <img src={logo} alt="companylogo" />
+              </span>
+              <h3 className="text-white font-semibold text-lg font-sansita-swashed">
+                Eventure hall
+              </h3>
+            </div>
+            <p className="mt-4 text-sm">
+              A premier event venue offering luxurious spaces for weddings,
+              corporate events, and special occasions.
+            </p>
+            {/* Social Media Icons */}
+            <div className="mt-4 flex space-x-4">
+              <FaFacebookF className="hover:text-white cursor-pointer" />
+              <FaInstagram className="hover:text-white cursor-pointer" />
+              <FaXTwitter className="hover:text-white cursor-pointer" />
+              <FaYoutube className="hover:text-white cursor-pointer" />
+            </div>
+          </div>
 
-        {/* Connect Section */}
-        <div>
-          <h3 className="text-lg font-bold">Connect</h3>
-          <ul className="text-sm mt-2 space-y-1">
-            <li>
-              <Link to="#">Contact</Link>
-            </li>
-          </ul>
-        </div>
+          {/* Venue Services */}
+          <div>
+            <h3 className="text-white font-semibold font-plus-jakarta-sans">
+              Our Services
+            </h3>
+            <ul className="mt-4 space-y-2">
+              <li>Wedding Receptions</li>
+              <li>Corporate Events</li>
+              <li>Birthday Parties</li>
+              <li>Concerts & Shows</li>
+              <li>Banquet Catering</li>
+            </ul>
+          </div>
 
-        {/* Stay Updated Section */}
-        <div>
-          <h3 className="text-lg font-bold">Stay Updated</h3>
-          <p className="text-gray-600 text-sm mt-2">
-            Subscribe to our newsletter for updates.
-          </p>
-          <div className="mt-3 flex flex-col sm:flex-row items-center rounded-lg overflow-hidden">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-3 py-2 bg-gray-100 outline-none w-full"
-            />
-            <button className="bg-blue-600 text-white px-4 py-2 w-full sm:w-auto ">
-              Subscribe
-            </button>
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-white font-semibold font-plus-jakarta-sans">
+              Contact Us
+            </h3>
+            <ul className="mt-4 space-y-2">
+              <li className="flex items-center space-x-2">
+                <FaMapLocation />
+                <span>123 Event Street, City, Country</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <FaPhone />
+                <span>+123 456 7890</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <FaEnvelope />
+                <span>info@h2allevents.com</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Information */}
+          <div>
+            <h3 className="text-white font-semibold font-plus-jakarta-sans">
+              Legal
+            </h3>
+            <ul className="mt-4 space-y-2">
+              <li>Terms & Conditions</li>
+              <li>Privacy Policy</li>
+              <li>Event Booking Policy</li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Footer Bottom Section */}
-      <div className="border-t border-gray-300 py-4 px-6 flex flex-col md:flex-row items-center justify-between text-gray-600 text-sm">
-        {/* Copyright Info */}
-        <div className="text-center md:text-left mb-4 md:mb-0">
-          &copy; {new Date().getFullYear()} Event Center. All rights reserved.
-        </div>
+        <hr className="my-8 border-gray-700" />
 
-        {/* Terms & Privacy Links */}
-        <div className="flex space-x-3">
-          <Link to="#" className="hover:text-black">
-            Terms & Conditions
-          </Link>
-          <span>|</span>
-          <Link to="#" className="hover:text-black">
-            Privacy Policy
-          </Link>
-        </div>
-
-        {/* Social Media Icons */}
-        <div className="flex space-x-4 mt-4 md:mt-0">
-          <Link
-            to="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-black"
-          >
-            <FaFacebookF size={20} />
-          </Link>
-          <Link
-            to="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-black"
-          >
-            <FaYoutube size={20} />
-          </Link>
-          <Link
-            to="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-black"
-          >
-            <FaInstagram size={20} />
-          </Link>
-          <Link
-            to="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-black"
-          >
-            <FaTwitter size={20} />
-          </Link>
-        </div>
+        {/* Copyright Section */}
+        <p className="text-center text-sm">
+          &copy; {new Date().getFullYear()} EventureHall. All rights reserved.
+        </p>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
