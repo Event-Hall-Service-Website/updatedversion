@@ -7,7 +7,7 @@ export const subscribeUser = createAsyncThunk(
   async (email, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/subscribe`, // ✅ Uses Vite environment variable
+        `${import.meta.env.VITE_API_URL}/auth/subscribe`, // ✅ Uses Vite environment variable
         { email }
       );
       return response.data;

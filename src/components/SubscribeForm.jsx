@@ -1,10 +1,8 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
 import { subscribeUser, resetStatus } from "../Redux/slice/subscribersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
 const SubscribeForm = () => {
   const [email, setEmail] = useState("");
@@ -22,26 +20,29 @@ const SubscribeForm = () => {
     dispatch(subscribeUser(email));
   };
 
-  // Show success/error messages
-  if (success) {
-    toast.success("Subscribed successfully!");
-    dispatch(resetStatus());
-    setEmail("");
-  }
+  // ✅ Move state updates and dispatch calls inside useEffect
+  useEffect(() => {
+    if (success) {
+      toast.success("Subscribed successfully!");
+      dispatch(resetStatus());
+      setEmail(""); // Clear input after success
+    }
 
-  if (error) {
-    toast.error(error); // 🔴 Show error message if duplicate
-    dispatch(resetStatus());
-  }
+    if (error) {
+      toast.error(error); // 🔴 Show error message if duplicate
+      dispatch(resetStatus());
+    }
+  }, [success, error, dispatch]);
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-4xl font-semibold tracking-tight text-white">
+            <h2 className="text-4xl font-semibold tracking-tight text-white font-plus-jakarta-sans">
               Stay Ahead with Our Exclusive Insights!
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-lg text-gray-300 font-plus-jakarta-sans">
               Subscribe to get the latest updates, expert tips, and exclusive
               offers delivered straight to your inbox. Be the first to know
               about new trends and opportunities!
@@ -84,12 +85,12 @@ const SubscribeForm = () => {
               <dt className="mt-4 text-base font-semibold text-white">
                 Fresh Content Every Week
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-400">
+              <dd className="mt-2 text-base/7 text-gray-400 font-plus-jakarta-sans">
                 Get handpicked articles, expert insights, and industry news
                 curated for you every week.
               </dd>
             </div>
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start font-plus-jakarta-sans">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
                 <HandRaisedIcon
                   aria-hidden="true"
