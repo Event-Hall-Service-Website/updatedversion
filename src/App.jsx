@@ -8,7 +8,7 @@ import Layout from "./layout/Layout";
 import Home from "./pages/Homepage";
 import PagenotFound from "./pages/PagenotFound";
 import ContactForm from "./pages/ContactForm ";
-// import BookingPage from "./pages/BookingPage";
+import BookingPage from "./pages/BookingPage";
 import Servicepage from "./pages/Servicepage";
 import "./App.css";
 import Aboutuspage from "./pages/Aboutuspage";
@@ -65,7 +65,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/contact" element={<ContactForm />} />
-          {/* <Route path="/book" element={<BookingPage />} /> */}
+          <Route path="/book" element={<BookingPage />} />
           <Route path="/service" element={<Servicepage />} />
           <Route path="/aboutus" element={<Aboutuspage />} />
           <Route path="*" element={<PagenotFound />} />
