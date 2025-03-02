@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useState } from "react";
 
 const CalenderUi = () => {
-  const [date, setDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
 
   return (
     <Popover>
@@ -22,22 +23,26 @@ const CalenderUi = () => {
           variant={"outline"}
           className={cn(
             "w-[280px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !selectedDate && "text-muted-foreground"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {selectedDate ? (
+            format(selectedDate, "PPP")
+          ) : (
+            <span>Pick a date</span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          initialFocus
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)} // ✅ Fixing state update
+          inline // ✅ Shows the calendar inside the popover
         />
       </PopoverContent>
     </Popover>
   );
 };
+
 export default CalenderUi;
