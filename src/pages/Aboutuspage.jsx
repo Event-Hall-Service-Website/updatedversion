@@ -191,7 +191,7 @@ const Aboutuspage = () => {
           </Swiper>
         </div>
       </section>
-      <div className="bg-white  sm:py-32 ">
+      <div className="bg-white   ">
         <div className="mx-auto max-w-7xl px-6 lg:px-8" data-aos="fade-up">
           <h2 className="text-center text-lg/8 font-semibold text-gray-900 font-plus-jakarta-sans">
             Trusted by Our Clients for Unforgettable Events at Eventure Hall

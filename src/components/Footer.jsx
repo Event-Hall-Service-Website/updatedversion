@@ -58,11 +58,11 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li className="flex items-center space-x-2">
                 <FaMapLocation />
-                <span>123 Event Street, City, Country</span>
+                <span>federal civil service club 1,</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaPhone />
-                <span>+123 456 7890</span>
+                <span>+234-813-942-1920</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FaEnvelope />

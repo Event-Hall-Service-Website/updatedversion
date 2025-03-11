@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
 import Ourservice from "../components/Ourservice";
+import { Link } from "react-router";
 
 export default function Servicepage() {
   const clipboardSectionRef = useRef(null);
@@ -37,19 +38,20 @@ export default function Servicepage() {
                 provide the perfect setting for your special moments.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
+                <Link
+                  to="/book"
                   href="#"
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Book Your Event
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="#"
                   className="text-sm/6 font-semibold text-gray-900"
                   onClick={handleScroll}
                 >
                   Explore Venue <span aria-hidden="true">→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -103,12 +105,12 @@ export default function Servicepage() {
                 the perfect space tailored to your needs.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
-                  Book a Tour
-                </a>
+                  Learn More
+                </Link>
               </div>
             </div>
 

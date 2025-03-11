@@ -12,7 +12,7 @@ import BookingPage from "./pages/BookingPage";
 import Servicepage from "./pages/Servicepage";
 import "./App.css";
 import Aboutuspage from "./pages/Aboutuspage";
-
+import BookingForm from "./components/BookingForm";
 const App = () => {
   const clipboardSectionRef = useRef(null);
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -66,6 +66,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/book" element={<BookingPage />} />
+          <Route path="/bookingform" element={<BookingForm />} />
           <Route path="/service" element={<Servicepage />} />
           <Route path="/aboutus" element={<Aboutuspage />} />
           <Route path="*" element={<PagenotFound />} />

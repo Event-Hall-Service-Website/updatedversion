@@ -223,10 +223,10 @@ const ContactForm = () => {
                   />
                 </svg>
               </div>
-              <DialogTitle className="mt-4 text-lg font-semibold">
-                thank you for reaching out to Eventurehall
+              <DialogTitle className="mt-4 text-lg font-semibold font-plus-jakarta-sans">
+                Thank you for reaching out to Eventurehall
               </DialogTitle>
-              <p className="text-sm text-gray-600 text-center mt-2">
+              <p className="text-sm text-gray-600 text-center mt-2 font-plus-jakarta-sans capitalize">
                 Your message has been sent successfully. We will get back to you
                 shortly.
               </p>
@@ -236,7 +236,7 @@ const ContactForm = () => {
             <Link to={"/"}>
               <Button
                 onClick={() => setOpenModal(false)}
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+                className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-plus-jakarta-sans"
               >
                 Go back to home
               </Button>
