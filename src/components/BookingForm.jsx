@@ -34,13 +34,6 @@ const BookingForm = () => {
   useEffect(() => {
     if (success) {
       setShowSuccessModal(true);
-      setTimeout(() => {
-        setShowSuccessModal(false);
-        dispatch(resetStatus()); // Reset booking status after closing modal
-      }, 3000);
-    }
-    //i want to clear my form data after booking
-    if (success) {
       setFormData({
         clientFirstName: "",
         clientLastName: "",
@@ -50,9 +43,12 @@ const BookingForm = () => {
         duration: "",
         eventDate: selectedDate || "",
       });
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        dispatch(resetStatus());
+      }, 3000);
     }
   }, [success, dispatch]);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -98,6 +94,28 @@ const BookingForm = () => {
     }
     try {
       await dispatch(createBooking(formData)).unwrap();
+      // Step 2: Send Email Notification via Web3Forms
+      const web3formData = new FormData();
+      web3formData.append("access_key", import.meta.env.VITE_API_WEB3FORM); // Your Web3Forms API Key
+      web3formData.append("subject", "New Booking Received");
+      web3formData.append(
+        "name",
+        `${formData.clientFirstName} ${formData.clientLastName}`
+      );
+      web3formData.append("email", formData.clientEmail);
+      web3formData.append("phone", formData.clientPhone);
+      web3formData.append("event_date", formData.eventDate);
+      web3formData.append("event_type", formData.eventType);
+      web3formData.append("duration", formData.duration);
+      web3formData.append(
+        "message",
+        `New booking received for ${formData.eventDate}.`
+      );
+
+      const res = await fetch(import.meta.env.VITE_API_URL, {
+        method: "POST",
+        body: web3formData,
+      }).then((res) => res.json());
     } catch (error) {
       if (error?.message?.includes("already have a booking")) {
         toast.error("You already have a booking for this date!", {
