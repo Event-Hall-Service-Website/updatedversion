@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Link } from "react-router";
 import { ToastContainer } from "react-toastify";
 const BookingForm = () => {
   const dispatch = useDispatch();
@@ -131,7 +132,10 @@ const BookingForm = () => {
           <p className="text-center text-gray-700 text-sm italic mb-6">
             🎉 Get ready! Your special event is set for{" "}
             <strong>{formData.eventDate || "Not Selected"}</strong>. We can't
-            wait to host you!
+            wait to host you!{" "}
+            <Link to={"/book"} className="text-blue-500">
+              click to eventDate here
+            </Link>
           </p>
 
           <form
