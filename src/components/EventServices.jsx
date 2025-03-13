@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Button from "../components/Button";
+// import Button from "../components/Button";
 
 // Import Low-Quality Placeholder Image (Optional)
 import placeholder from "../assets/img/heroimage6.avif";
@@ -81,9 +81,9 @@ const EventServices = () => {
               <p className="text-gray-600 mt-2 text-[15px]">
                 {service.description}
               </p>
-              <Button className="border border-[#5833F1] hover:bg-sky-700 hover:text-white w-[150px] h-[50px] text-[#5833F1] px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans mt-4">
+              {/* <Button className="border border-[#5833F1] hover:bg-sky-700 hover:text-white w-[150px] h-[50px] text-[#5833F1] px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans mt-4">
                 Learn more
-              </Button>
+              </Button> */}
             </div>
           ))}
         </div>

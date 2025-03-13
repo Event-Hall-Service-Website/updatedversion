@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Link } from "react-router";
 // Import react-toastify
@@ -23,6 +24,7 @@ const ContactForm = () => {
     name: "",
     email: "",
     message: "",
+    clientPhone: "",
     checkbox: false,
   });
 
@@ -33,18 +35,13 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (success) {
-      // Show success toast notification
-      toast.success("Message sent successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        className: "text-[12px] font-plus-jakarta-sans",
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+        clientPhone: "",
+        checkbox: false,
       });
-      setFormData({ name: "", email: "", message: "", checkbox: false });
       setOpenModal(true); // Open the modal on success
       dispatch(resetStatus());
     }
@@ -90,6 +87,47 @@ const ContactForm = () => {
     }
 
     dispatch(submitContactForm(formData));
+    try {
+      // Sending form data to Redux (optional)
+      await dispatch(submitContactForm(formData)).unwrap();
+
+      // ✅ Send email using Web3Forms
+      const web3formData = new FormData();
+      web3formData.append("access_key", import.meta.env.VITE_API_WEB3FORM); // Web3Forms API Key
+      web3formData.append("email", "eventhallfscs@gmail.com"); // Admin Email
+      web3formData.append("replyto", formData.email);
+      web3formData.append("subject", "📩 New Contact Form Submission!");
+      web3formData.append(
+        "message",
+        `You have received a new message!\n\n
+        📝 Name: ${formData.name}
+        ✉ Email: ${formData.email}
+        📞Contact: ${formData.clientPhone}
+        📩 Message: ${formData.message}\n\n
+        Best Regards,\nEventure Hall`
+      );
+
+      const res = await fetch(import.meta.env.VITE_API_URLWEB, {
+        method: "POST",
+        body: web3formData,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        toast.success("Your message has been sent!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+        setFormData({ name: "", email: "", message: "", checkbox: false });
+        setOpenModal(true);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
   };
   return (
     <>
@@ -145,6 +183,23 @@ const ContactForm = () => {
                   placeholder="Enter your Email"
                   className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none placeholder:text-[12px] text-[13px]"
                 />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
+                <div className="flex items-center border rounded-md px-4 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+                  <span className="text-gray-500 text-[12px]">+234</span>
+                  <input
+                    type="tel"
+                    name="clientPhone"
+                    value={formData.clientPhone} // Remove existing +234 if re-entered
+                    onChange={handleChange}
+                    placeholder="Enter phone number"
+                    className="ml-2 w-full focus:outline-none text-[12px]"
+                    required
+                  />
+                </div>
               </div>
 
               <div className="mb-4">
@@ -226,10 +281,10 @@ const ContactForm = () => {
               <DialogTitle className="mt-4 text-lg font-semibold font-plus-jakarta-sans">
                 Thank you for reaching out to Eventurehall
               </DialogTitle>
-              <p className="text-sm text-gray-600 text-center mt-2 font-plus-jakarta-sans capitalize">
+              <DialogDescription className="text-sm text-gray-600 text-center mt-2 font-plus-jakarta-sans capitalize">
                 Your message has been sent successfully. We will get back to you
                 shortly.
-              </p>
+              </DialogDescription>
             </div>
           </DialogHeader>
           <div className="flex justify-center mt-4">

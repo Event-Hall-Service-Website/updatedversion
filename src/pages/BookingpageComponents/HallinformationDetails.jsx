@@ -98,7 +98,7 @@ const HallInformationDetails = () => {
             <img
               src={hallimagebooking}
               alt="Eventure Hall Wedding Celebration"
-              className="w-full max-w-md rounded-lg shadow-lg"
+              className="w-full max-w-md rounded-lg shadow-lg hidden lg:block"
             />
           </div>
         </div>

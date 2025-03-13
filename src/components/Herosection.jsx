@@ -68,10 +68,11 @@ const Herosection = () => {
 
           {/* Buttons */}
           <div className="flex justify-center mt-4 sm:mt-8">
-            <Button className="bg-[#5833F1] hover:bg-sky-700 w-[230px] h-[60px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans sm:hidden text-[20px]">
-              Book for an Event
-            </Button>
-
+            <Link to={"/book"}>
+              <Button className="bg-[#5833F1] hover:bg-sky-700 w-[230px] h-[60px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-plus-jakarta-sans sm:hidden text-[20px]">
+                Book for an Event
+              </Button>
+            </Link>
             <div className="hidden sm:flex gap-6">
               <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
                 View Gallery

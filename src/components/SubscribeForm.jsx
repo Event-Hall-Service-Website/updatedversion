@@ -16,7 +16,7 @@ const SubscribeForm = () => {
       toast.error("Please enter your email!");
       return;
     }
-
+    setEmail("");
     dispatch(subscribeUser(email));
   };
 
