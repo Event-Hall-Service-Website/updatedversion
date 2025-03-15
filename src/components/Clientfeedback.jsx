@@ -32,7 +32,7 @@ const ClientFeedback = () => {
     setIsExpanded(!isExpanded);
   };
 
-  console.log("Feedbacks State:", feedbacks); // ✅ Debug feedbacks state
+  // console.log("Feedbacks State:", feedbacks); // ✅ Debug feedbacks state
 
   return (
     <section className="py-16 px-6 bg-gray-100" data-aos="fade-up">

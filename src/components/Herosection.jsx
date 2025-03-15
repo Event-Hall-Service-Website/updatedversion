@@ -38,7 +38,7 @@ const Herosection = () => {
     setLoadedImages((prev) => {
       const updated = [...prev];
       updated[index] = true;
-      console.log(updated);
+      // console.log(updated);
       return updated;
     });
   };
