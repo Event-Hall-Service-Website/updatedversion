@@ -9,6 +9,7 @@ import ContactSection from "../components/ContactSection";
 import EventGallery from "../components/EventGallery";
 import Workflow from "../components/workflow";
 import Stats from "../components/Stats";
+
 const Homepage = () => {
   return (
     <main>
@@ -18,6 +19,7 @@ const Homepage = () => {
 
       <EventServices />
       <FAQAccordion />
+
       <Clientfeedback />
       <Workflow />
       <Stats></Stats>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
-import hallimagebooking from "../assets/img/hallimagebooking.png";
+// import hallimagebooking from "../assets/img/hallimagebooking.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -118,8 +118,6 @@ const BookingForm = () => {
         `You have received a new event booking! Below are the details of the reservation:\n\n
         📅 Event Date: ${formData.eventDate}
         🎉 Event Type: ${formData.eventType}
-    
-     
         👤 Client: ${formData.clientFirstName} ${formData.clientLastName}
         📞 Contact: ${formData.clientPhone}
         ✉ Email: ${formData.clientEmail}\n\n

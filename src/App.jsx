@@ -10,6 +10,7 @@ import PagenotFound from "./pages/PagenotFound";
 import ContactForm from "./pages/ContactForm ";
 import BookingPage from "./pages/BookingPage";
 import Servicepage from "./pages/Servicepage";
+import GalleryPage from "./pages/GalleryPage";
 import "./App.css";
 import Aboutuspage from "./pages/Aboutuspage";
 import BookingForm from "./components/BookingForm";
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/bookingform" element={<BookingForm />} />
           <Route path="/service" element={<Servicepage />} />
           <Route path="/aboutus" element={<Aboutuspage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
           <Route path="*" element={<PagenotFound />} />
         </Route>
       </Routes>

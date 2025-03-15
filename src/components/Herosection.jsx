@@ -74,9 +74,11 @@ const Herosection = () => {
               </Button>
             </Link>
             <div className="hidden sm:flex gap-6">
-              <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
-                View Gallery
-              </Button>
+              <Link to={"/gallery"}>
+                <Button className="bg-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
+                  View Gallery
+                </Button>
+              </Link>
               <Link to={"/contact"}>
                 <Button className="border border-[#5833F1] hover:bg-sky-700 w-[150px] h-[50px] text-white px-4 py-2 rounded-lg transition cursor-pointer font-light font-poppins">
                   Contact Us

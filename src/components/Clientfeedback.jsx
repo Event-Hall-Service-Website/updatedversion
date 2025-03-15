@@ -1,63 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import person1 from "../assets/img/person1.png";
-import person2 from "../assets/img/person2.png";
-import person3 from "../assets/img/person3.png";
-import person4 from "../assets/img/person4.png";
-import person5 from "../assets/img/person5.png";
-import person6 from "../assets/img/person6.png";
-
-const feedbacks = [
-  {
-    name: "Abayomi Israel",
-    review:
-      "The event center made our wedding day magical! The hall was beautifully decorated and the staff was incredibly helpful.",
-    img: person1,
-  },
-  {
-    name: "Grace White",
-    review:
-      "We had our annual meeting here, and it was a great success. The facilities were top-notchss and great",
-    img: person2,
-  },
-  {
-    name: "Oladipo Femi",
-    review:
-      "I rented the hall for my daughter's birthday party. The decorations were stunning, and the kids had a blast!",
-    img: person3,
-  },
-  {
-    name: "Majokunmi Lekan",
-    review:
-      "Attending a corporate event at this venue was a pleasure. The ambiance was perfect for networking.",
-    img: person4,
-  },
-  {
-    name: "Akubo Gbani",
-    review:
-      "The event center exceeded my expectations! Everything was well organized, and the staff went above and beyond.",
-    img: person5,
-  },
-  {
-    name: "Emmanuel Gbani",
-    review:
-      "The event center exceeded my expectations! Everything was well organized, and the staff went above and beyond.",
-    img: person6,
-  },
-];
+import axios from "axios";
+import { PlusCircle, MinusCircle } from "lucide-react"; // ✅ Import icons
 
 const ClientFeedback = () => {
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [feedbackLimit, setFeedbackLimit] = useState(5);
+  const [isExpanded, setIsExpanded] = useState(false); // Track expansion state
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    // Fetch feedback from backend
+    axios.get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`).then((res) => {
+      setFeedbacks(res.data.data); // Extract 'data' from response
+    });
   }, []);
+  // ✅ Function to toggle between "Show More" & "Show Less"
+  const toggleFeedbackLimit = () => {
+    if (isExpanded) {
+      setFeedbackLimit(6); // Reset to initial limit
+    } else {
+      setFeedbackLimit(feedbacks.length); // Show all feedbacks
+    }
+    setIsExpanded(!isExpanded); // Toggle state
+  };
 
   return (
-    <section className="py-16 px-6 bg-gray-100">
+    <section className="py-16 px-6 bg-gray-100" data-aos="fade-up">
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold font-plus-jakarta-sans">
           Client Feedback
@@ -77,31 +51,58 @@ const ClientFeedback = () => {
         }}
         pagination={{ clickable: true }}
         modules={[Pagination]}
-        // className="max-w-6xl mx-auto"
       >
-        {feedbacks.map((feedback, index) => (
-          <SwiperSlide key={index} className="p-6 mb-5">
-            <div
-              className="bg-white shadow-lg rounded-lg p-6"
-              data-aos="fade-up"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={feedback.img}
-                  alt={feedback.name}
-                  className="w-12 h-12 rounded-full"
-                />
-                <h3 className="font-bold text-lg font-plus-jakarta-sans">
-                  {feedback.name}
-                </h3>
+        {feedbacks.slice(0, feedbackLimit).map((feedback, index) => {
+          // ✅ Extract first and last letter of the name correctly inside `.map()`
+          const initials =
+            feedback.name && feedback.name.length > 1
+              ? `${feedback.name[0]}${feedback.name.slice(-1)}`.toUpperCase()
+              : "U"; // Default to 'U' if name is undefined
+
+          return (
+            <SwiperSlide key={index} className="p-6 mb-5">
+              <div
+                className="bg-white shadow-lg rounded-lg p-6"
+                data-aos="fade-up"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  {/* ✅ Show Initials in a Circular Box Instead of Image */}
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-600 text-white text-lg font-bold">
+                    {initials}
+                  </div>
+                  <h3 className="font-bold text-lg font-plus-jakarta-sans">
+                    {feedback.name}
+                  </h3>
+                </div>
+                <p className="text-gray-600 text-[15px] font-plus-jakarta-sans">
+                  {feedback.review}
+                </p>
               </div>
-              <p className="text-gray-600  text-[15px] font-plus-jakarta-sans">
-                {feedback.review}
-              </p>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
+      <div className="flex justify-center mt-8" data="fade-up">
+        {/* ✅ Icon for Show More */}
+        {feedbacks.length > 6 && (
+          <button
+            onClick={toggleFeedbackLimit}
+            className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 cursor-pointer"
+          >
+            {isExpanded ? (
+              <>
+                <MinusCircle size={20} />{" "}
+                <span className="text-lg font-semibold">Show Less</span>
+              </>
+            ) : (
+              <>
+                <PlusCircle size={20} />{" "}
+                <span className="text-lg font-semibold">Show More</span>
+              </>
+            )}
+          </button>
+        )}
+      </div>
     </section>
   );
 };
