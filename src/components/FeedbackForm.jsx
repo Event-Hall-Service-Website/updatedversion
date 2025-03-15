@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { Field, Label,  } from "@headlessui/react";
 
 export default function FeedbackForm() {
   const [formData, setFormData] = useState({ name: "", review: "", img: "" });
@@ -30,7 +29,6 @@ export default function FeedbackForm() {
     await axios.post(`${import.meta.env.VITE_API_URL}/auth/feedback`, formData);
 
     setFormData({ name: "", review: "", img: "" });
-    setAgreed(false);
   };
 
   return (
