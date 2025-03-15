@@ -35,10 +35,19 @@ const Aboutuspage = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
-    // Fetch feedback from backend
-    axios.get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`).then((res) => {
-      setFeedbacks(res.data.data);
-    });
+    // ✅ Fetch feedback safely
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`)
+      .then((res) => {
+        console.log("API Response:", res.data); // Debugging the response
+
+        // ✅ Ensure we always set an array, even if API fails
+        setFeedbacks(Array.isArray(res.data?.data) ? res.data.data : []);
+      })
+      .catch((error) => {
+        console.error("Error fetching feedbacks:", error);
+        setFeedbacks([]); // ✅ Set empty array on failure
+      });
   }, []);
 
   return (
@@ -114,23 +123,19 @@ const Aboutuspage = () => {
             modules={[Autoplay, Pagination]}
             className="mt-10"
           >
-            {feedbacks.map((testimonial, index) => {
-              // Extract first and last letter of the name correctly
-              const initials =
-                testimonial.name && testimonial.name.length > 1
-                  ? `${testimonial.name[0]}${testimonial.name.slice(
-                      -1
-                    )}`.toUpperCase()
-                  : "U"; // Default to 'U' if name is undefined
-
-              return (
+            {Array.isArray(feedbacks) && feedbacks.length > 0 ? (
+              feedbacks.map((testimonial, index) => (
                 <SwiperSlide key={testimonial.id || index} className="mb-8">
                   <blockquote className="text-center text-xl font-semibold text-gray-900 sm:text-2xl">
                     <p>{testimonial.review}</p>
                   </blockquote>
                   <figcaption className="mt-10 flex flex-col items-center">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-600 text-white text-lg font-bold">
-                      {initials}
+                      {testimonial.name && testimonial.name.length > 1
+                        ? `${testimonial.name[0]}${testimonial.name.slice(
+                            -1
+                          )}`.toUpperCase()
+                        : "U"}
                     </div>
                     <div className="mt-4 flex flex-col items-center text-base">
                       <div className="font-semibold text-gray-900">
@@ -140,8 +145,10 @@ const Aboutuspage = () => {
                     </div>
                   </figcaption>
                 </SwiperSlide>
-              );
-            })}
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No feedback available</p> // ✅ Handle empty case
+            )}
           </Swiper>
         </div>
       </section>
