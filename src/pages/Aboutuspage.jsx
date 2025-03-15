@@ -39,7 +39,7 @@ const Aboutuspage = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`)
       .then((res) => {
-        console.log("API Response:", res.data); // Debugging the response
+        // console.log("API Response:", res.data); // Debugging the response
 
         // ✅ Ensure we always set an array, even if API fails
         setFeedbacks(Array.isArray(res.data?.data) ? res.data.data : []);
