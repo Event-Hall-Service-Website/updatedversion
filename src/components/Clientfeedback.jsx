@@ -9,26 +9,30 @@ import axios from "axios";
 import { PlusCircle, MinusCircle } from "lucide-react"; // ✅ Import icons
 
 const ClientFeedback = () => {
-  const [feedbacks, setFeedbacks] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]); // ✅ Initialized as an array
   const [feedbackLimit, setFeedbackLimit] = useState(5);
   const [isExpanded, setIsExpanded] = useState(false); // Track expansion state
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
-    // Fetch feedback from backend
-    axios.get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`).then((res) => {
-      setFeedbacks(res.data.data); // Extract 'data' from response
-    });
+    // ✅ Fetch feedback from backend safely
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/auth/feedbacks`)
+      .then((res) => {
+        console.log("API Response:", res.data); // ✅ Debug API response
+        setFeedbacks(Array.isArray(res.data?.data) ? res.data.data : []); // ✅ Ensure it's always an array
+      })
+      .catch((error) => console.error("Error fetching feedbacks:", error));
   }, []);
+
   // ✅ Function to toggle between "Show More" & "Show Less"
   const toggleFeedbackLimit = () => {
-    if (isExpanded) {
-      setFeedbackLimit(6); // Reset to initial limit
-    } else {
-      setFeedbackLimit(feedbacks.length); // Show all feedbacks
-    }
-    setIsExpanded(!isExpanded); // Toggle state
+    setFeedbackLimit(isExpanded ? 6 : feedbacks.length); // Toggle limit
+    setIsExpanded(!isExpanded);
   };
+
+  console.log("Feedbacks State:", feedbacks); // ✅ Debug feedbacks state
 
   return (
     <section className="py-16 px-6 bg-gray-100" data-aos="fade-up">
@@ -52,10 +56,10 @@ const ClientFeedback = () => {
         pagination={{ clickable: true }}
         modules={[Pagination]}
       >
-        {feedbacks.slice(0, feedbackLimit).map((feedback, index) => {
+        {feedbacks?.slice(0, feedbackLimit).map((feedback, index) => {
           // ✅ Extract first and last letter of the name correctly inside `.map()`
           const initials =
-            feedback.name && feedback.name.length > 1
+            feedback.name?.length > 1
               ? `${feedback.name[0]}${feedback.name.slice(-1)}`.toUpperCase()
               : "U"; // Default to 'U' if name is undefined
 
@@ -82,7 +86,8 @@ const ClientFeedback = () => {
           );
         })}
       </Swiper>
-      <div className="flex justify-center mt-8" data="fade-up">
+
+      <div className="flex justify-center mt-8" data-aos="fade-up">
         {/* ✅ Icon for Show More */}
         {feedbacks.length > 6 && (
           <button
