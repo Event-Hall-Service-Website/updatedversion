@@ -9,7 +9,7 @@ import ContactSection from "../components/ContactSection";
 import EventGallery from "../components/EventGallery";
 import Workflow from "../components/workflow";
 import Stats from "../components/Stats";
-
+// import CookieConsent from "../components/CookieConsent";
 const Homepage = () => {
   return (
     <main>
@@ -25,6 +25,7 @@ const Homepage = () => {
       <Stats></Stats>
       <EventGallery />
       <ContactSection />
+      {/* <CookieConsent /> */}
     </main>
   );
 };
