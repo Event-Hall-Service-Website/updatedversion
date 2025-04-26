@@ -1,15 +1,41 @@
 import React from "react";
+import image1 from "../assets/img/picture1.jpg";
+import image2 from "../assets/img/picture2.jpg";
+import image3 from "../assets/img/picture3.jpg";
+import image4 from "../assets/img/picture4.jpg";
+import image5 from "../assets/img/picture5.jpg";
+import image7 from "../assets/img/picture5.jpg";
+import image6 from "../assets/img/picture6.jpg";
 
+import image8 from "../assets/img/picture8.jpg";
+import image9 from "../assets/img/picture9.jpg";
+import image10 from "../assets/img/picture10.jpg";
+import image11 from "../assets/img/picture11.jpg";
+import image12 from "../assets/img/picture12.jpg";
+import image13 from "../assets/img/picture13.jpg";
+import image15 from "../assets/img/picture15.jpg";
+import image16 from "../assets/img/picture16.jpg";
+import image17 from "../assets/img/picture17.jpg";
+import image18 from "../assets/img/picture18.jpg";
 const eventImages = [
-  "https://images.unsplash.com/photo-1583939411023-14783179e581?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdlZGRpbmclMjBwbGFubmluZ3xlbnwwfHwwfHx8MA%3D%3D",
-  "https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmlydGhkYXl8ZW58MHx8MHx8fDA%3D",
-  "https://images.unsplash.com/photo-1521334884684-d80222895322",
-  "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-  "https://images.unsplash.com/photo-1542744094-3a31f272c490",
-  "https://images.unsplash.com/photo-1507878866276-a947ef722fee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNvbmZlcmVuY2V8ZW58MHx8MHx8fDA%3D",
-  "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8",
-  "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-  "https://images.unsplash.com/photo-1516979187457-637abb4f9353",
+  { url: image1, eventType: "Picture 1" },
+  { url: image2, eventType: "Picture 2" },
+  { url: image3, eventType: "Picture 3" },
+  { url: image4, eventType: "Picture 4" },
+  { url: image5, eventType: "Picture 5" },
+  { url: image6, eventType: "Picture 6" },
+  { url: image7, eventType: "Picture 7" },
+  { url: image8, eventType: "Picture 8" },
+  { url: image9, eventType: "Picture 9" },
+  { url: image10, eventType: "Picture 10" },
+  { url: image11, eventType: "Picture 11" },
+  { url: image12, eventType: "Picture 12" },
+  { url: image13, eventType: "Picture 13" },
+  { url: image1, eventType: "Picture 14" },
+  { url: image15, eventType: "Picture 15" },
+  { url: image16, eventType: "Picture 16" },
+  { url: image17, eventType: "Picture 17" },
+  { url: image18, eventType: "Picture 18" },
 ];
 
 const GalleryPage = () => {
@@ -31,13 +57,13 @@ const GalleryPage = () => {
             className="relative group overflow-hidden rounded-lg shadow-lg"
           >
             <img
-              src={`${image}?w=500&h=400&fit=crop`}
+              src={`${image.url}?w=500&h=400&fit=crop`}
               alt={`Event ${index + 1}`}
               className="w-full h-64 object-cover transition-transform duration-300 transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black bg-opacity-10 opacity-0 group-hover:opacity-60 transition-opacity flex items-center justify-center">
               <p className="text-white font-semibold text-lg bg-black bg-opacity-20 px-4 py-2 rounded-md">
-                View Image
+                {image.eventType}
               </p>
             </div>
           </div>

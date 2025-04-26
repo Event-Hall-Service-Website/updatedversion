@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
-// import hallimagebooking from "../assets/img/hallimagebooking.png";
+import hallimagebooking from "../assets/img/hallimage2.webp"; // Import your hall image
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const BookingForm = () => {
     eventType: "",
     clientEmail: "",
     clientPhone: "",
+    eventMessage: "",
 
     eventDate: selectedDate || "",
   });
@@ -41,6 +42,7 @@ const BookingForm = () => {
         eventType: "",
         clientEmail: "",
         clientPhone: "",
+        eventMessage: "",
 
         eventDate: selectedDate || "",
       });
@@ -49,7 +51,14 @@ const BookingForm = () => {
         dispatch(resetStatus());
       }, 3000);
     }
-  }, [success, dispatch]);
+    if (error) {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "colored",
+      });
+    }
+  }, [success, error, dispatch]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -69,38 +78,40 @@ const BookingForm = () => {
       });
       return;
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // const phoneRegex = /^[0-9]{10}$/;
+    const phoneRegex = /^[0-9]{10}$/;
 
     if (
       !formData.clientFirstName ||
       !formData.clientLastName ||
       !formData.eventType ||
       !formData.clientEmail ||
-      !formData.clientPhone
+      !formData.clientPhone ||
+      !formData.eventMessage
     ) {
-      alert("Please fill in all fields before booking.");
+      toast.warning("Please fill in all fields before booking.");
       return;
     }
 
     if (!emailRegex.test(formData.clientEmail)) {
-      alert("Please enter a valid email address.");
+      toast.warning("Please enter a valid email address.");
       return;
     }
 
-    // if (!phoneRegex.test(formData.clientPhone)) {
-    //   toast.error("please provide a valid number e.g 8065592378", {
-    //     position: "top-right",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     theme: "colored",
-    //     className: "text-[12px] font-plus-jakarta-sans",
-    //   });
-    //   return;
-    // }
+    if (!phoneRegex.test(formData.clientPhone)) {
+      toast.error("please provide a valid number e.g 8065592378", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        className: "text-[12px] font-plus-jakarta-sans",
+      });
+      return;
+    }
     try {
       await dispatch(createBooking(formData)).unwrap();
       const web3formData = new FormData();
@@ -120,7 +131,8 @@ const BookingForm = () => {
         🎉 Event Type: ${formData.eventType}
         👤 Client: ${formData.clientFirstName} ${formData.clientLastName}
         📞 Contact: ${formData.clientPhone}
-        ✉ Email: ${formData.clientEmail}\n\n
+        ✉ Email: ${formData.clientEmail}
+        📝 Message: ${formData.eventMessage}\n\n
         You can reply directly to this email to contact the client.\n\nBest regards,\n[Eventure Hall]`
       );
 
@@ -136,22 +148,44 @@ const BookingForm = () => {
         });
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      console.error("Booking error:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "An error occurred. Please try again.";
+
+      if (errorMessage.includes("This date is already booked")) {
+        toast.error(
+          "This date is already booked. Please select another date.",
+          {
+            position: "top-right",
+            autoClose: 3000,
+            theme: "colored",
+          }
+        );
+      } else {
+        toast.error(errorMessage, {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+        });
+      }
     }
   };
 
   return (
     <div className="container mx-auto px-4 py-14 mt-10 font-plus-jakarta-sans">
       <ToastContainer />
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center lg:p-28">
         <div className="hidden lg:block">
           <img
-            src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjI4fHxib29raW5nJTIwcGhvbmV8ZW58MHx8MHx8fDA%3D"
+            // src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjI4fHxib29raW5nJTIwcGhvbmV8ZW58MHx8MHx8fDA%3D"
+            // alt="Event Hall"
+            src={hallimagebooking}
             alt="Event Hall"
-            className="w-full rounded-lg shadow-lg  "
+            loading="lazy"
+            className="w-full rounded-lg shadow-lg h-[500px] "
           />
         </div>
 
@@ -252,6 +286,20 @@ const BookingForm = () => {
                   required
                 />
               </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 font-plus-jakarta-sans">
+                Message / Additional Requests
+              </label>
+              <textarea
+                name="eventMessage"
+                value={formData.eventMessage}
+                onChange={handleChange}
+                placeholder="Enter any additional details..."
+                className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 text-[12px] font-plus-jakarta-sans resize-none"
+                rows="4"
+              />
             </div>
 
             <div className="md:col-span-2">

@@ -17,7 +17,7 @@ const CookieConsent = () => {
   useEffect(() => {
     // Check if the cookie already exists
     if (!cookies.userConsent) {
-      axios.get(`${import.meta.env.VITE_API_URL}/auth/cookies`).then((res) => {
+      axios.get(`${import.meta.env.VITE_API_URL}/cookies`).then((res) => {
         if (!res.data.consent) {
           setOpenModal(true);
         }
@@ -27,7 +27,7 @@ const CookieConsent = () => {
 
   const handleConsent = (consent) => {
     setCookie("userConsent", consent, { path: "/" });
-    axios.post(`${import.meta.env.VITE_API_URL}/auth/cookies`, { consent });
+    axios.post(`${import.meta.env.VITE_API_URL}/cookies`, { consent });
     setOpenModal(false);
   };
 
